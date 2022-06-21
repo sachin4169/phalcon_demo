@@ -1,0 +1,19 @@
+<h2>Add Products</h2>
+
+<?php echo $this->tag->form("product/add"); ?>
+
+    <p>
+        <label for="p_name">Name</label>
+        <?php echo $this->tag->textField("p_name"); ?>
+    </p>
+
+    <p>
+        <label for="p_price">Price</label>
+        <?php echo $this->tag->textField("p_price"); ?>
+    </p>
+
+    <p>
+        <?php echo $this->tag->submitButton(["Add", 'class'=>'btn btn-primary']); ?>
+    </p>
+
+</form>

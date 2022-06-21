@@ -28,5 +28,7 @@ class LoginController extends Controller
             $this->response->redirect('/login');
         }
         $this->view->message = $message;
+        
+        $this->response->redirect('/product');
     }
 }

@@ -1,0 +1,45 @@
+<div class="alert alert-<?php echo $success === true ? 'success' : 'danger'; ?>">
+    <?php echo $message; ?>
+</div>
+
+<h2> Welcome </h2>
+<?php
+echo $this->tag->linkTo(['product', 'Add Product', 'class' => 'btn btn-primary m-2']);
+?>
+
+<?php
+if ($products->count() > 0) {
+?>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="3">Products quantity: <?php echo $products->count(); ?></td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <?php foreach ($products as $product) { ?>
+                <tr>
+                    <td><?php echo $product->p_id; ?></td>
+                    <td><?php echo $product->p_name; ?></td>
+                    <td><?php echo $product->p_price; ?></td>
+                    <td>
+                        <?php echo $this->tag->form(""); ?>
+                        <button name="delete" class="btn btn-warning mb-2" value="<?php echo $product->p_id; ?>">Edit</button>
+                        </form>
+
+                        <?php echo $this->tag->form("product/delete"); ?>
+                        <button name="delete" class="btn btn-danger mb-2" value="<?php echo $product->p_id; ?>"> Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+<?php } ?>
