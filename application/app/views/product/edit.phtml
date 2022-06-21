@@ -1,0 +1,16 @@
+<h2>Edit </h2>
+
+<?php
+if ($products->count() > 0) { ?>
+<ul>
+    <li> <?php echo $products->p_id ?> </li>
+</ul>
+
+<form action="update" method="post">
+    <input type="number" name="id" value="<?= $products->p_id ?>" hidden>
+    <input type="text" name="name" value="<?= $products->p_name ?>" >
+    <input type="text" name="price" value="<?= $products->p_price ?>">
+    <input type="submit" value="Submit">
+</form>
+
+<?php } ?>

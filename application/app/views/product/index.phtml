@@ -30,8 +30,8 @@ if ($products->count() > 0) {
                     <td><?php echo $product->p_name; ?></td>
                     <td><?php echo $product->p_price; ?></td>
                     <td>
-                        <?php echo $this->tag->form(""); ?>
-                        <button name="delete" class="btn btn-warning mb-2" value="<?php echo $product->p_id; ?>">Edit</button>
+                        <?php echo $this->tag->form("product/edit"); ?>
+                        <button name="edit" class="btn btn-warning mb-2" value="<?php echo $product->p_id; ?>">Edit</button>
                         </form>
 
                         <?php echo $this->tag->form("product/delete"); ?>

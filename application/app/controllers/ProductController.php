@@ -32,7 +32,7 @@ class ProductController extends Controller
             $message = "product add successfuly";
         } else {
             $message = "Sorry, the following problems were generated:<br>"
-                    . implode('<br>', $product->getMessages());
+                . implode('<br>', $product->getMessages());
         }
         $this->view->message = $message;
         $this->response->redirect('product');
@@ -61,4 +61,43 @@ class ProductController extends Controller
         $this->response->redirect("product");
     }
 
+    public function editAction()
+    {
+        $var = $_POST['edit'];
+        $this->view->products = Products::findFirstByp_id($var);
+    }
+
+    public function updateAction()
+    {
+        $id = $_POST['id'];
+        $name = $_POST['name'];
+        $price = $_POST['price'];
+
+        $product = Products::findFirstByp_id($id);
+        if ($product != null) {
+
+            $product->p_name = $name;
+            $product->p_price = $price;
+
+            if ($product->save() == true) {
+                $success = $product->save();
+                $this->view->success = $success;
+                $message = "update successfuly";
+                $this->view->message = $message;
+                $this->response->redirect("product");
+            } else {
+                $message = "Sorry, the following problems were generated:<br>"
+                    . implode('<br>', $product->getMessages());
+                $this->view->message = $message;
+            }
+        } else {
+            $message = "Sorry, the following problems were generated:<br>"
+                . implode('<br>', $product->getMessages());
+            $this->view->message = $message;
+            // $this->response->redirect("product");
+        }
+
+        // Store and check for errors
+
+    }
 }
