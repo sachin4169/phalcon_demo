@@ -1,0 +1,89 @@
+Step 1: Creating the project folder
+    Open your Terminal and make your project folder.
+    mkdir phalcon_sample && cd phalcon_sample
+
+    OR 
+
+    Add Folders manually
+
+Step 2: Configuring Docker
+        The Dockerfile is required by Docker to make a docker container with the Phalcon image.
+        Make a file named docker-compose.yml with the source code bellow.
+
+        Change Phalcon version if prompted (PHALCON_VERSION=4.0.5)
+
+Step 3: Running the Docker container
+        Execute this command to start the Docker container.
+        docker-compose up -d
+
+        If adding PHP myadmin use docker-compose build before docker-compose up
+
+Step 4: Creating the Phalcon application
+        We will use the Phalcon developer tools to create a default Phalcon project. Run this command to initialize a composer application.
+        docker-compose exec app composer init
+
+         Welcome to the Composer config generator  
+                                            
+
+
+                                        This command will guide you through creating your composer.json config.
+
+                                        Package name (<vendor>/<name>) [root/html]: phalcon/app
+                                        Description []: Phalcon application
+                                        Author [, n to skip]: n
+                                        Minimum Stability []: 
+                                        Package Type (e.g. library, project, metapackage, composer-plugin) []: 
+                                        License []: 
+
+                                        Define your dependencies.
+
+                                        Would you like to define your dependencies (require) interactively [yes]? no
+                                        Would you like to define your dev dependencies (require-dev) interactively [yes]? bo
+                                        Please answer yes, y, no, or n.
+                                        Would you like to define your dev dependencies (require-dev) interactively [yes]? no
+                                        Add PSR-4 autoload mapping? Maps namespace "Phalcon\App" to the entered relative path. [src/, n to skip]: 
+
+                                        {
+                                        "name": "phalcon/app",
+                                        "description": "Phalcon application",
+                                        "autoload": {
+                                                "psr-4": {
+                                                "Phalcon\\App\\": "src/"
+                                                }
+                                        },
+                                        "require": {}
+                                        }
+
+                                        Do you confirm generation [yes]? 
+                                        Generating autoload files
+                                        Generated autoload files
+                                        PSR-4 autoloading configured. Use "namespace Phalcon\App;" in src/
+                                        Include the Composer autoloader with: require 'vendor/autoload.php';
+
+
+
+
+        After the composer.json is created, you should install the Phalcon developer tools and create the application.
+        
+        1. docker-compose exec app composer require --dev phalcon/devtools
+
+        2. docker-compose exec app ./vendor/bin/phalcon project application simple
+
+
+Step 5: Accessing the application
+        IF you concluded the last steps without errors, you can access your project by your browser, the project is running in http://localhost:8080
+
+
+PHPMYADMIN
+        username: root
+        password: root
+        
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<IMPORTANT TEXT>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+FOR DATABASE CONNECTIVITY USE FOLLOWING
+
+                'host'     => 'mysql',   "MOST IMPORTANT" 
+                'port'     => '3306:3306',  (Not Required)
+                'username' => 'root',   (User Name of PHP myAdmin)
+                'password' => 'root',   (Password of PHP myAdmin)
+                'dbname'   => 'phalcon_app', (Database Name)

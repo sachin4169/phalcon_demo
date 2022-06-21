@@ -1,0 +1,24 @@
+
+<div class="alert alert-<?php echo $success === true ? 'success' : 'danger'; ?>">
+    <?php echo $message; ?>
+</div>
+
+
+
+<h2> Login Here!</h2>
+
+<?php echo $this->tag->form("login/welcome"); ?>
+
+<p>
+    <label for="email">Email</label>
+    <?php echo $this->tag->emailField("email"); ?>
+</p>
+
+<p>
+    <label for="email">Password</label>
+    <?php echo $this->tag->passwordField("password"); ?>
+</p>
+
+<p>
+    <?php echo $this->tag->submitButton(["LogIn", "class"=>"btn btn-primary"]); ?>
+</p>
